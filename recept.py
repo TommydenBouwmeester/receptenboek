@@ -18,8 +18,10 @@ class Recept:
     def get_naam(self):
         return self.__naam
     
-    
+    def voeg_stap_toe(self, stap: Stap):
+        self.__stappen.append(stap)
+
+
     
 
-    # etc.. etc..
-    # Succes!
+
