@@ -11,6 +11,14 @@ class Recept:
     
     def voeg_ingredient_toe(self, ingredient: Ingredient):
         self.__ingredient_list.append(ingredient)
+
+    def get_ingredienten(self):
+        return self.__ingredient_list
+    
+    def get_naam(self):
+        return self.__naam
+    
+    
     
 
     # etc.. etc..
