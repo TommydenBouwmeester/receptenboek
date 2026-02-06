@@ -1,3 +1,7 @@
+from ingredient import Ingredient
+from stap import Stap
+
+
 class Recept:
     def __init__(self, naam, omschrijving):
         self.__naam = naam
