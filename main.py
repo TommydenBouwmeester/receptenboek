@@ -7,20 +7,27 @@ def main():
     recepten = []
 
     recept1 = Recept("Kip Kerrie", "Kip kerrie zonder pakjes en zakjes")
-    recept1.voeg_ingredient_toe(Ingredient("kip", 175,"gram", 280))
+    kip = Ingredient("kip", 175,"gram", 280)
+    vega_kip = Ingredient("vegatarische kipstukkies", 180, "gram", 45)
+    kip.set_plantaardig_alternatief(vega_kip)
+    recept1.voeg_ingredient_toe(kip)
+
     recept1.voeg_ingredient_toe(Ingredient("sperziebonen", 200, "gram", 60))
 
     recept1.voeg_stap_toe(Stap("Kook de rijst en zet een pan water met een snuf zout op het vuur voor de sperziebonen."))
     recept1.voeg_stap_toe(Stap("Snijd de kip in kleine blokjes, snipper het uitje, snijd de knoflook fijn en snijd de kontjes van de sperziebonen (was ze ook even)."))
-
     recepten.append(recept1)
     
 
     recept2 = Recept("Wraps met kip", "makkelijk zelf te maken")
+
+    kip = Ingredient("kip", 125, "gram", 200)
+    plantaardige_kipstukjes = Ingredient("Plantaardige kipstukjes", 125, "gram", 200)
+    kip.set_plantaardig_alternatief(plantaardige_kipstukjes)
+    recept2.voeg_ingredient_toe(kip)
     recept2.voeg_ingredient_toe(Ingredient("middelgrote tortilla's", 2, "stuks", 350))
     recept2.voeg_ingredient_toe(Ingredient("rode paprika", 1, "stuk", 30))
     recept2.voeg_ingredient_toe(Ingredient("maïs", 1, "blikje", 150))
-    recept2.voeg_ingredient_toe(Ingredient("kip", 125, "gram", 200))
     recept2.voeg_ingredient_toe(Ingredient("ui", 1, "stuk", 40))
     recept2.voeg_ingredient_toe(Ingredient("Mexicaanse kruidenmix", 1, "eetlepel",20))
     recept2.voeg_ingredient_toe(Ingredient("lente ui", 1, "stuk", 5))
@@ -42,7 +49,7 @@ def main():
     recept3.voeg_ingredient_toe(Ingredient("AH BASIC pastasaus basillicum", 130, "gram",65))
     recept3.voeg_ingredient_toe(Ingredient("grana padano 32+", 12.5, "gram", 50))
 
-    recept3.voeg_stap_toe(Stap("Kook de fusilli beetgaar volgens de aanwijzingen op de verpakking. Verhit ondertussen de olijfolie in een hapjespan en bak de groenten 5 min. op middelhoog vuur."))
+    recept3.voeg_stap_toe(Stap("Kook de fusilli beetgaar volgens de aanwijzingen op de verpakking. Verhit ondertussen de olijfolie in een hapjespan en bak de groenten 5 min. op middelhoog vuur.", "water in de pan is handig habibi"))
     recept3.voeg_stap_toe(Stap("Voeg de hamblokjes toe en bak 1 min. mee. Schenk de pastasaus bij het groente-hammengsel en warm 2 min. goed door."))
     recept3.voeg_stap_toe(Stap("Giet de pasta af en meng door de saus. Rasp er de Grana Padano over en serveer."))
     
@@ -56,13 +63,26 @@ def main():
         print(str(teller) + ". " + recept.get_naam())
         teller = teller + 1
     
-    keuze = int(input("Welk recept wilt u bekijken? "))
-    gekozen_recept = recepten[keuze - 1]
 
-    print(gekozen_recept)
+    try:
+        keuze = int(input("Welk recept wilt u bekijken? "))
+        gekozen_recept = recepten[keuze - 1]
+    except ValueError:
+        print("foutief of niet bestaand recept geselecteerd")
+        
+    
+    try:
 
+        aantal = int(input("Wat is het aantal personen? "))
+        gekozen_recept.set_aantal_personen(aantal)
+    except ValueError:
+        print("Foutieve invoer")
 
-
+    plantaardig = input("Wilt u de plantaardige versie? (ja/nee): ").lower()
+    if plantaardig == "ja":
+        print(gekozen_recept.get_plantaardig_recept(True))
+    else:
+        print(gekozen_recept)
 
 
 if __name__ == "__main__":
