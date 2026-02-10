@@ -7,8 +7,8 @@ def main():
     recepten = []
 
     recept1 = Recept("Kip Kerrie", "Kip kerrie zonder pakjes en zakjes")
-    recept1.voeg_ingredient_toe(Ingredient("kip", 500, "gram"))
-    recept1.voeg_ingredient_toe(Ingredient("sperziebonen", 400, "gram"))
+    recept1.voeg_ingredient_toe(Ingredient("kip", 175,"gram", 280))
+    recept1.voeg_ingredient_toe(Ingredient("sperziebonen", 200, "gram", 60))
 
     recept1.voeg_stap_toe(Stap("Kook de rijst en zet een pan water met een snuf zout op het vuur voor de sperziebonen."))
     recept1.voeg_stap_toe(Stap("Snijd de kip in kleine blokjes, snipper het uitje, snijd de knoflook fijn en snijd de kontjes van de sperziebonen (was ze ook even)."))
@@ -35,12 +35,12 @@ def main():
 
 
     recept3 = Recept("Fusilli", "met groentesaus en hamblokjes")
-    recept3.voeg_ingredient_toe(Ingredient("fusilli", 75, "gram"))
-    recept3.voeg_ingredient_toe(Ingredient("traditionele olijfolie", 1/4, "el"))
-    recept3.voeg_ingredient_toe(Ingredient("macaroni-spaghettigroente", 112.5, "gram"))
-    recept3.voeg_ingredient_toe(Ingredient("hamblokjes", 62.5, "gram"))
-    recept3.voeg_ingredient_toe(Ingredient("AH BASIC pastasaus basillicum", 130, "gram"))
-    recept3.voeg_ingredient_toe(Ingredient("grana padano 32+", 12.5, "gram"))
+    recept3.voeg_ingredient_toe(Ingredient("fusilli", 75, "gram", 265))
+    recept3.voeg_ingredient_toe(Ingredient("traditionele olijfolie", 1/4, "el",30))
+    recept3.voeg_ingredient_toe(Ingredient("macaroni-spaghettigroente", 112.5, "gram",35))
+    recept3.voeg_ingredient_toe(Ingredient("hamblokjes", 62.5, "gram", 75))
+    recept3.voeg_ingredient_toe(Ingredient("AH BASIC pastasaus basillicum", 130, "gram",65))
+    recept3.voeg_ingredient_toe(Ingredient("grana padano 32+", 12.5, "gram", 50))
 
     recept3.voeg_stap_toe(Stap("Kook de fusilli beetgaar volgens de aanwijzingen op de verpakking. Verhit ondertussen de olijfolie in een hapjespan en bak de groenten 5 min. op middelhoog vuur."))
     recept3.voeg_stap_toe(Stap("Voeg de hamblokjes toe en bak 1 min. mee. Schenk de pastasaus bij het groente-hammengsel en warm 2 min. goed door."))
