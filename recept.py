@@ -22,6 +22,48 @@ class Recept:
     def voeg_stap_toe(self, stap: Stap):
         self.__stappen.append(stap)
 
+    def set_aantal_personen(self, personen: int):
+        vermeningvuldigingsfactor = personen / self.__aantal_personen
+        for item in self.__ingredient_list:
+            huidige_hoeveelheid = item.get_hoeveelheid()
+            nieuwe_hoeveelheid = huidige_hoeveelheid * vermeningvuldigingsfactor
+            item.set_hoeveelheid(nieuwe_hoeveelheid)
+        
+        self.__aantal_personen = personen
+
+    def get_aantal_personenen(self):
+        return self.__aantal_personen
+    
+    def get_plantaardig_recept(self, plantaardig: bool):
+        totaal_kcal = 0
+        overzicht = "RECEPT: " + self.__naam + "(PLANTAARDIGE VERSIE)" + "\n"
+        overzicht = overzicht + "OMSCHRIJVING:" + self.__omschrijving + "\n\n"
+        overzicht = overzicht + "INGREDIËNTEN:\n"
+
+        for item in self.__ingredient_list:
+            gekozen_ingredient= item.get_ingredient(plantaardig)
+            kcal_totaal_ingrediënt = gekozen_ingredient.get_kcal() * self.__aantal_personen
+            totaal_kcal = totaal_kcal + kcal_totaal_ingrediënt
+
+            naam = gekozen_ingredient.get_naam()
+            hoeveelheid = gekozen_ingredient.get_hoeveelheid()
+            eenheid = gekozen_ingredient.get_eenheid()
+            
+            overzicht = overzicht + f" - {naam}, {hoeveelheid} {eenheid}, {kcal_totaal_ingrediënt} kcal\n"
+
+        overzicht = overzicht + "\nBEREIDING:\n"
+        teller = 1
+
+        for stapje in self.__stappen:
+            overzicht = overzicht + str(teller) + ". " + str(stapje) + "\n"
+            teller = teller + 1
+
+        overzicht = overzicht + "\nTOTALE CALORIEËN: " + str(totaal_kcal)
+
+        return overzicht
+
+
+
     def __str__(self):
         overzicht = "RECEPT: " + self.__naam + "\n"
         overzicht = overzicht + "OMSCHRIJVING:"  + self.__omschrijving + "\n\n"
