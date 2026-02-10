@@ -2,8 +2,6 @@ class Stap:
     def __init__(self, beschrijving = str, tip: str = None):
         self.__beschrijving = beschrijving
         self.__tip = tip
-    
-
 
     def __str__(self):
         if self.__tip:
