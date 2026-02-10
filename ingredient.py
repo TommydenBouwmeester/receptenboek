@@ -5,7 +5,11 @@ class Ingredient:
         self.__eenheid = eenheid
         self.__kcal = kcal
     def __str__(self):
-        return f"- {self.__naam}, {self.__hoeveelheid}, {self.__eenheid}, {self.__kcal}"
+        return f"- {self.__naam}, {self.__hoeveelheid} {self.__eenheid}, {self.__kcal} kcal"
+    
+
+    
+
     
 
     
