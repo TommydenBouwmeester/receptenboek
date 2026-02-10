@@ -17,13 +17,13 @@ def main():
     
 
     recept2 = Recept("Wraps met kip", "makkelijk zelf te maken")
-    recept2.voeg_ingredient_toe(Ingredient("middelgrote tortilla's", 2, "stuks"))
-    recept2.voeg_ingredient_toe(Ingredient("rode paprika", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("maïs", 1, "blikje"))
-    recept2.voeg_ingredient_toe(Ingredient("kip", 125, "gram"))
-    recept2.voeg_ingredient_toe(Ingredient("ui", 1, "stuk"))
-    recept2.voeg_ingredient_toe(Ingredient("Mexicaanse kruidenmix", 1, "eetlepel"))
-    recept2.voeg_ingredient_toe(Ingredient("lente ui", 1, "stuk"))
+    recept2.voeg_ingredient_toe(Ingredient("middelgrote tortilla's", 2, "stuks", 350))
+    recept2.voeg_ingredient_toe(Ingredient("rode paprika", 1, "stuk", 30))
+    recept2.voeg_ingredient_toe(Ingredient("maïs", 1, "blikje", 150))
+    recept2.voeg_ingredient_toe(Ingredient("kip", 125, "gram", 200))
+    recept2.voeg_ingredient_toe(Ingredient("ui", 1, "stuk", 40))
+    recept2.voeg_ingredient_toe(Ingredient("Mexicaanse kruidenmix", 1, "eetlepel",20))
+    recept2.voeg_ingredient_toe(Ingredient("lente ui", 1, "stuk", 5))
 
     recept2.voeg_stap_toe(Stap("Hak de ui fijn en bak deze samen met de kip ongeveer 5 min. in een pan. Snijd ook de paprika in kleine blokjes en bak nog 5 min mee."))
     recept2.voeg_stap_toe(Stap("Voeg 2 eetlepels van de mexicaanse kruidenmix toe aan het kipmensel samen met 3 eetlepels water"))
