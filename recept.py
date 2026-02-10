@@ -56,7 +56,7 @@ class Recept:
         for stapje in self.__stappen:
             overzicht = overzicht + str(teller) + ". " + str(stapje) + "\n"
             teller = teller + 1
-        overzicht = overzicht + "\nTOTALE CALORIEËN: " + str(totaal_kcal)
+        overzicht = overzicht + "\nVOEDINGSWAARDE: " + str(totaal_kcal) + "kcal"
         return overzicht
     
     def __str__(self):
