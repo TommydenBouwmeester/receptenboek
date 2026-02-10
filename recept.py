@@ -24,9 +24,9 @@ class Recept:
     def set_aantal_personen(self, personen: int):
         vermeningvuldigingsfactor = personen / self.__aantal_personen
         for item in self.__ingredient_list:
-            huidige_hoeveelheid = item.get_hoeveelheid()
-            nieuwe_hoeveelheid = huidige_hoeveelheid * vermeningvuldigingsfactor
-            item.set_hoeveelheid(nieuwe_hoeveelheid)
+            item.schaal_hoeveelheid(vermeningvuldigingsfactor)
+        self.__aantal_personen = personen
+
         
         self.__aantal_personen = personen
 
