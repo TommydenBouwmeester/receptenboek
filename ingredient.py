@@ -10,6 +10,10 @@ class Ingredient:
     def set_hoeveelheid(self, hoeveelheid: float):
         self.__hoeveelheid = hoeveelheid
 
+        if self.__plantaardig_alternatief is not None:
+            self.__plantaardig_alternatief.set_hoeveelheid(hoeveelheid)
+
+
     def get_hoeveelheid(self):
         return self.__hoeveelheid
     
@@ -26,7 +30,7 @@ class Ingredient:
         self.__plantaardig_alternatief = alternatief
     
     def get_ingredient(self, plantaardig: bool):
-        if plantaardig and self.__plantaardig_alternatief:
+        if plantaardig and self.__plantaardig_alternatief is not None:
             return self.__plantaardig_alternatief
         return self
     
@@ -36,7 +40,11 @@ class Ingredient:
             self.__plantaardig_alternatief.schaal_hoeveelheid(factor)
 
     def __str__(self):
-        return f"- {self.__naam}, {self.__hoeveelheid} {self.__eenheid}, {self.__kcal} kcal"
+        if self.__plantaardig_alternatief == None:
+            return f"- {self.__naam}, {self.__hoeveelheid} {self.__eenheid}, {self.__kcal} kcal"
+        else:
+            return f"- {self.__naam}, {self.__hoeveelheid} {self.__eenheid}, {self.__kcal} kcal {self.__plantaardig_alternatief}"
+    
     
 
     
