@@ -29,6 +29,11 @@ class Ingredient:
         if plantaardig and self.__plantaardig_alternatief:
             return self.__plantaardig_alternatief
         return self
+    
+    def schaal_hoeveelheid(self, factor: float):
+        self.__hoeveelheid = self.__hoeveelheid * factor
+        if self.__plantaardig_alternatief is not None:
+            self.__plantaardig_alternatief.schaal_hoeveelheid(factor)
 
     def __str__(self):
         return f"- {self.__naam}, {self.__hoeveelheid} {self.__eenheid}, {self.__kcal} kcal"
