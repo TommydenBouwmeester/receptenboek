@@ -65,15 +65,20 @@ def main():
     for recept in recepten:
         print(str(teller) + ". " + recept.get_naam())
         teller = teller + 1
-    
 
-    try:
-        keuze = int(input("Welk recept wilt u bekijken? "))
-        gekozen_recept = recepten[keuze - 1]
-    except ValueError:
-        print("foutief of niet bestaand recept geselecteerd")
-        
     
+    while True:
+        try:
+            keuze = int(input("Welk recept wilt u bekijken? "))
+            if keuze <= 0:
+                print("Recept niet gevonden")
+                continue
+            gekozen_recept = recepten[keuze - 1]
+            break
+        except IndexError:
+            print("Recept niet gevonden")
+
+        
     try:
         aantal = int(input("Wat is het aantal personen? "))
         gekozen_recept.set_aantal_personen(aantal)
