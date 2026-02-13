@@ -13,7 +13,6 @@ class Ingredient:
         if self.__plantaardig_alternatief is not None:
             self.__plantaardig_alternatief.set_hoeveelheid(hoeveelheid)
 
-
     def get_hoeveelheid(self):
         return self.__hoeveelheid
     

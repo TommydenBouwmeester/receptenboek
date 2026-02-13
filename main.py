@@ -42,10 +42,13 @@ def main():
 
 
     recept3 = Recept("Fusilli", "met groentesaus en hamblokjes")
+    hamblokjes = Ingredient("hamblokjes", 62.5, "gram", 75)
+    vegatarische_hamblokjes = Ingredient("GoodBite hamblokjes (plantaardig)",62.5, "gram", 75)
+    hamblokjes.set_plantaardig_alternatief(vegatarische_hamblokjes)
+    recept3.voeg_ingredient_toe(hamblokjes)
     recept3.voeg_ingredient_toe(Ingredient("fusilli", 75, "gram", 265))
     recept3.voeg_ingredient_toe(Ingredient("traditionele olijfolie", 1/4, "el",30))
     recept3.voeg_ingredient_toe(Ingredient("macaroni-spaghettigroente", 112.5, "gram",35))
-    recept3.voeg_ingredient_toe(Ingredient("hamblokjes", 62.5, "gram", 75))
     recept3.voeg_ingredient_toe(Ingredient("AH BASIC pastasaus basillicum", 130, "gram",65))
     recept3.voeg_ingredient_toe(Ingredient("grana padano 32+", 12.5, "gram", 50))
 
@@ -72,7 +75,6 @@ def main():
         
     
     try:
-
         aantal = int(input("Wat is het aantal personen? "))
         gekozen_recept.set_aantal_personen(aantal)
     except ValueError:
