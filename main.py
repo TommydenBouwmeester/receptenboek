@@ -79,12 +79,20 @@ def main():
             print("Recept niet gevonden")
 
         
-    try:
-        aantal = int(input("Wat is het aantal personen? "))
-        gekozen_recept.set_aantal_personen(aantal)
-    except ValueError:
-        print("Foutieve invoer")
+    while True:
+        try:
+            aantal = int(input("Wat is het aantal personen? "))
+            if aantal <= 0:
+                print("Foutieve invoer")
+                continue
+            gekozen_recept.set_aantal_personen(aantal)
+            break
+        except ValueError:
+            print("Foutieve invoer")
 
+    
+    
+    
     plantaardig = input("Wilt u de plantaardige versie? (ja/nee): ").lower()
     if plantaardig == "ja":
         print(gekozen_recept.get_plantaardig_recept(True))
