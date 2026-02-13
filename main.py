@@ -75,7 +75,7 @@ def main():
                 continue
             gekozen_recept = recepten[keuze - 1]
             break
-        except IndexError:
+        except (IndexError, ValueError):
             print("Recept niet gevonden")
 
         
@@ -92,12 +92,21 @@ def main():
 
     
     
+    while True:
+        plantaardig = input("Wilt u de plantaardige versie? (ja/nee): ").lower()
+
+        if plantaardig == "ja":
+            print(gekozen_recept.get_plantaardig_recept(True))
+            break
+        elif plantaardig == "nee":
+            print(gekozen_recept)
+            break
+        else:
+            print("Foutieve invoer")
     
-    plantaardig = input("Wilt u de plantaardige versie? (ja/nee): ").lower()
-    if plantaardig == "ja":
-        print(gekozen_recept.get_plantaardig_recept(True))
-    else:
-        print(gekozen_recept)
+  
+        
+        
 
 
 if __name__ == "__main__":
