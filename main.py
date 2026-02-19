@@ -65,34 +65,34 @@ def main():
 
     print("Beschikbare recepten")
 
-    teller = 1
-    for recept in recepten:
-        print(str(teller) + ". " + recept.get_naam())
-        teller = teller + 1
+            teller = 1
+            for recept in recepten:
+                print(str(teller) + ". " + recept.get_naam())
+                teller = teller + 1
 
-    
-    while True:
-        try:
-            keuze = int(input("Welk recept wilt u bekijken? "))
-            if keuze <= 0:
-                print("Recept niet gevonden")
-                continue
-            gekozen_recept = recepten[keuze - 1]
-            break
-        except (IndexError, ValueError):
-            print("Recept niet gevonden")
+            
+            while True:
+                try:
+                    keuze = int(input("Welk recept wilt u bekijken? "))
+                    if keuze <= 0:
+                        print("Recept niet gevonden")
+                        continue
+                    gekozen_recept = recepten[keuze - 1]
+                    break
+                except (IndexError, ValueError):
+                    print("Recept niet gevonden")
 
-        
-    while True:
-        try:
-            aantal = int(input("Wat is het aantal personen? "))
-            if aantal <= 0:
-                print("Foutieve invoer")
-                continue
-            gekozen_recept.set_aantal_personen(aantal)
-            break
-        except ValueError:
-            print("Foutieve invoer")
+                
+            while True:
+                try:
+                    aantal = int(input("Wat is het aantal personen? "))
+                    if aantal <= 0:
+                        print("Foutieve invoer")
+                        continue
+                    gekozen_recept.set_aantal_personen(aantal)
+                    break
+                except ValueError:
+                    print("Foutieve invoer")
 
     
     
