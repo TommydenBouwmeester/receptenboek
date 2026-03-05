@@ -3,9 +3,13 @@ class Stap:
         self.__beschrijving = beschrijving
         self.__tip = tip
 
+    def set(self, tip):
+        self.__tip = tip
+
     def __str__(self):
+        overzicht = self.__beschrijving
         if self.__tip:
-            return f" {self.__beschrijving} | Tip: {self.__tip}"
-        return self.__beschrijving
+            overzicht = overzicht + f"\nTIP: {self.__tip}"
+        return overzicht 
     
 
