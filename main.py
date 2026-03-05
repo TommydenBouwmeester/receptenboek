@@ -1,6 +1,8 @@
 from recept import Recept 
 from ingredient import Ingredient 
 from stap import Stap
+from reportlab.pdfgen import canvas
+
 
 def main():
     recepten = []
@@ -104,6 +106,16 @@ def tonen_recepten(recepten):
         if plantaardig == "ja":
             print(gekozen_recept.get_plantaardig_recept(True))
             while True:
+                pdf_vraag = input("Wilt u dit recept opslaan als PDF? (ja/nee): ").lower()
+                if pdf_vraag == "ja":
+                    exporteer_naar_pdf(gekozen_recept)
+                    break
+                elif pdf_vraag == "nee":
+                    break
+                else:
+                    print("Foutieve invoer")
+
+            while True:
                 keuzemenu = input("Wilt u het recepten verwijderen of terug naar home? ").lower()
                 if keuzemenu == "verwijderen":
                     recepten.pop(keuze -1)
@@ -116,6 +128,15 @@ def tonen_recepten(recepten):
 
         elif plantaardig == "nee":
             print(gekozen_recept)
+            while True:
+                pdf_vraag = input("Wilt u dit recept opslaan als PDF? (ja/nee): ").lower()
+                if pdf_vraag == "ja":
+                    exporteer_naar_pdf(gekozen_recept)
+                    break
+                elif pdf_vraag == "nee":
+                    break
+                else:
+                    print("Foutieve invoer")
             while True:
                 keuzemenu = input("Wilt u het recepten verwijderen of terug naar home? ").lower()
                 if keuzemenu == "verwijderen":
