@@ -166,7 +166,7 @@ def voeg_recept_toe(recepten):
 
             plantaardig_vraag = input("Is een plantaardig alternatief gewenst? (ja/nee): ")
             if plantaardig_vraag == "ja":
-                plantaardig_naam = input("Naam van het ingrediënt").lower()
+                plantaardig_naam = input("Naam van het ingrediënt: ").lower()
                 plantaardig_hoeveelheid = float(input("Wat is de hoeveelheid? "))
                 plantaardig_eenheid = input("Wat is de eenheid? ")
                 plantaardig_kcal = float(input("Hoeveel caloriën bevaat dit plantaardig alternatief? "))
