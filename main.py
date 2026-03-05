@@ -109,7 +109,7 @@ def tonen_recepten(recepten):
             while True:
                 pdf_vraag = input("Wilt u dit recept opslaan als PDF? (ja/nee): ").lower()
                 if pdf_vraag == "ja":
-                    exporteer_naar_pdf(gekozen_recept)
+                    exporteer_naar_pdf(gekozen_recept, True)
                     break
                 elif pdf_vraag == "nee":
                     break
@@ -132,7 +132,7 @@ def tonen_recepten(recepten):
             while True:
                 pdf_vraag = input("Wilt u dit recept opslaan als PDF? (ja/nee): ").lower()
                 if pdf_vraag == "ja":
-                    exporteer_naar_pdf(gekozen_recept)
+                    exporteer_naar_pdf(gekozen_recept, False)
                     break
                 elif pdf_vraag == "nee":
                     break
@@ -200,8 +200,11 @@ def voeg_recept_toe(recepten):
     print("Recept is toegevoegd aan het overzicht!")
     print(nieuw_recept)
 
-def exporteer_naar_pdf(gekozen_recept):
-    bestandsnaam = gekozen_recept.get_naam() + ".pdf"
+def exporteer_naar_pdf(gekozen_recept, plantaardige_keuze):
+    bestandsnaam = gekozen_recept.get_naam()
+    if plantaardige_keuze:
+        bestandsnaam = bestandsnaam + "_plantaardig.pdf"
+    bestandsnaam = bestandsnaam + ".pdf"
     pdf = canvas.Canvas(bestandsnaam)
     pdf.setTitle(gekozen_recept.get_naam())
     pdf.setFont("Helvetica-Bold", 24)
@@ -210,8 +213,9 @@ def exporteer_naar_pdf(gekozen_recept):
     tekst = pdf.beginText(40, 720)
     tekst.setFont("Helvetica", 12)
     tekst.setFillColor(colors.black)
-    regels = str(gekozen_recept).split('\n')
-    
+    tekst_inhoud = gekozen_recept.get_plantaardig_recept(plantaardige_keuze)
+    regels = tekst_inhoud.split('\n')
+
     for regel in regels:
         while len(regel) > 90:
             tekst.textLine(regel[:90])
