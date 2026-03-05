@@ -2,7 +2,6 @@ from recept import Recept
 from ingredient import Ingredient 
 from stap import Stap
 
-
 def main():
     recepten = []
 
@@ -51,120 +50,17 @@ def main():
     recept3.voeg_stap_toe(Stap("Giet de pasta af en meng door de saus. Rasp er de Grana Padano over en serveer."))
     recepten.append(recept3)
 
+    return recepten
 
+def tonen_keuzemenu():
+    recepten = main()
     while True:
         keuzemenu = input("Toevoegen of tonen overzicht of exit?: ").lower()
         if keuzemenu == "tonen":
-            print("Beschikbare recepten")
-            teller = 1
-            for recept in recepten:
-                print(str(teller) + ". " + recept.get_naam())
-                teller = teller + 1
-
-            while True:
-                try:
-                    keuze = int(input("Welk recept wilt u bekijken? "))
-                    if keuze <= 0:
-                        print("Recept niet gevonden")
-                        continue
-                    gekozen_recept = recepten[keuze - 1]
-                    break
-                except (IndexError, ValueError):
-                    print("Recept niet gevonden")
-
-            while True:
-                try:
-                    aantal = int(input("Wat is het aantal personen? "))
-                    if aantal <= 0:
-                        print("Foutieve invoer")
-                        continue
-                    gekozen_recept.set_aantal_personen(aantal)
-                    break
-                except ValueError:
-                    print("Foutieve invoer")
-
-
-            while True:
-                plantaardig = input("Wilt u de plantaardige versie? (ja/nee): ").lower()
-                if plantaardig == "ja":
-                    print(gekozen_recept.get_plantaardig_recept(True))
-                    while True:
-                        keuzemenu = input("Wilt u het recepten verwijderen of terug naar home? ").lower()
-                        if keuzemenu == "verwijderen":
-                            recepten.pop(keuze -1)
-                            break
-                        elif keuzemenu == "terug":
-                            break
-                        else:
-                            print("Foutieve invoer")
-                    break
-
-                elif plantaardig == "nee":
-                    print(gekozen_recept)
-                    while True:
-                        keuzemenu = input("Wilt u het recepten verwijderen of terug naar home? ").lower()
-                        if keuzemenu == "verwijderen":
-                            recepten.pop(keuze -1)
-                            break
-                        elif keuzemenu == "terug":
-                            break
-                        else:
-                            print("Foutieve invoer")
-                    break
-                else:
-                    print("Foutieve invoer")
-                            
-
-
+            tonen_recepten(recepten)
 
         elif keuzemenu == "toevoegen":
-            naam = input("Naam van het recept: ")
-            omschrijving = input("Omschrijving van het recept: ")
-            nieuw_recept = Recept(naam, omschrijving)
-            print("\nIngrediënten toevoegen of typ klaar om te stoppen")
-            while True:
-                try:
-                    naam_ingrediënt = input("Naam van het ingrediënt: ").lower()
-                    hoeveelheid_ingrediënt = float(input("Wat is de hoeveelheid? "))
-                    eenheid_ingrediënt = input("Wat is de eenheid? ")
-                    kcal_ingrediënt = float(input("Hoeveel caloriën bevat dit ingrediënt? "))
-                    ingrediënt = Ingredient(naam_ingrediënt, hoeveelheid_ingrediënt, eenheid_ingrediënt, kcal_ingrediënt)
-
-                    plantaardig_vraag = input("Is een plantaardig alternatief gewenst? (ja/nee): ")
-                    if plantaardig_vraag == "ja":
-                        plantaardig_naam = input("Naam van het ingrediënt").lower()
-                        plantaardig_hoeveelheid = float(input("Wat is de hoeveelheid? "))
-                        plantaardig_eenheid = input("Wat is de eenheid? ")
-                        plantaardig_kcal = float(input("Hoeveel caloriën bevaat dit plantaardig alternatief? "))
-                        plantaardig_ingrediënt = Ingredient(plantaardig_naam, plantaardig_hoeveelheid, plantaardig_eenheid, plantaardig_kcal)
-                        ingrediënt.set_plantaardig_alternatief(plantaardig_ingrediënt)
-
-                    nieuw_recept.voeg_ingredient_toe(ingrediënt)
-
-                    nieuw_ingrediënt = input("Wil je nog een ingrediënt toevoegen? ").lower()
-                    if nieuw_ingrediënt == "nee":
-                        break
-                except ValueError:
-                        print("Foutieve invoer")
-
-            while True:
-                stap_tekst = input("Beschrijf de bereidingsstap: ")
-                nieuwe_stap = Stap(stap_tekst)
-
-                tip_vraag = input("Wilt u een tip toevoegen aan deze stap? (ja/nee): ").lower()
-                if tip_vraag == "ja":
-                    tip_inhoud = input("Voer de tip in: ")
-                    nieuwe_stap.set(tip_inhoud) 
-
-                nieuw_recept.voeg_stap_toe(nieuwe_stap)
-
-                nog_stap = input("Nog een stap toevoegen? (ja/nee): ").lower()
-                if nog_stap == "nee":
-                    break
-  
-            recepten.append(nieuw_recept)
-            print("Recept is toegevoegd aan het overzicht!")
-            print(nieuw_recept)
+            voeg_recept_toe(recepten)
 
         elif keuzemenu == "exit":
             print("Programma sluit")
@@ -173,5 +69,114 @@ def main():
         else:
             print("Foutieve invoer. Kies toevoegen, tonen of exit")
 
+def tonen_recepten(recepten):
+    print("Beschikbare recepten")
+    teller = 1
+    for recept in recepten:
+        print(str(teller) + ". " + recept.get_naam())
+        teller = teller + 1
+
+    while True:
+        try:
+            keuze = int(input("Welk recept wilt u bekijken? "))
+            if keuze <= 0:
+                print("Recept niet gevonden")
+                continue
+            gekozen_recept = recepten[keuze - 1]
+            break
+        except (IndexError, ValueError):
+            print("Recept niet gevonden")
+
+    while True:
+        try:
+            aantal = int(input("Wat is het aantal personen? "))
+            if aantal <= 0:
+                print("Foutieve invoer")
+                continue
+            gekozen_recept.set_aantal_personen(aantal)
+            break
+        except ValueError:
+            print("Foutieve invoer")
+
+
+    while True:
+        plantaardig = input("Wilt u de plantaardige versie? (ja/nee): ").lower()
+        if plantaardig == "ja":
+            print(gekozen_recept.get_plantaardig_recept(True))
+            while True:
+                keuzemenu = input("Wilt u het recepten verwijderen of terug naar home? ").lower()
+                if keuzemenu == "verwijderen":
+                    recepten.pop(keuze -1)
+                    break
+                elif keuzemenu == "terug":
+                    break
+                else:
+                    print("Foutieve invoer")
+            break
+
+        elif plantaardig == "nee":
+            print(gekozen_recept)
+            while True:
+                keuzemenu = input("Wilt u het recepten verwijderen of terug naar home? ").lower()
+                if keuzemenu == "verwijderen":
+                    recepten.pop(keuze -1)
+                    break
+                elif keuzemenu == "terug":
+                    break
+                else:
+                    print("Foutieve invoer")
+            break
+        else:
+            print("Foutieve invoer")
+
+def voeg_recept_toe(recepten):
+    naam = input("Naam van het recept: ")
+    omschrijving = input("Omschrijving van het recept: ")
+    nieuw_recept = Recept(naam, omschrijving)
+    print("\nIngrediënten toevoegen of typ klaar om te stoppen")
+    while True:
+        try:
+            naam_ingrediënt = input("Naam van het ingrediënt: ").lower()
+            hoeveelheid_ingrediënt = float(input("Wat is de hoeveelheid? "))
+            eenheid_ingrediënt = input("Wat is de eenheid? ")
+            kcal_ingrediënt = float(input("Hoeveel caloriën bevat dit ingrediënt? "))
+            ingrediënt = Ingredient(naam_ingrediënt, hoeveelheid_ingrediënt, eenheid_ingrediënt, kcal_ingrediënt)
+
+            plantaardig_vraag = input("Is een plantaardig alternatief gewenst? (ja/nee): ")
+            if plantaardig_vraag == "ja":
+                plantaardig_naam = input("Naam van het ingrediënt").lower()
+                plantaardig_hoeveelheid = float(input("Wat is de hoeveelheid? "))
+                plantaardig_eenheid = input("Wat is de eenheid? ")
+                plantaardig_kcal = float(input("Hoeveel caloriën bevaat dit plantaardig alternatief? "))
+                plantaardig_ingrediënt = Ingredient(plantaardig_naam, plantaardig_hoeveelheid, plantaardig_eenheid, plantaardig_kcal)
+                ingrediënt.set_plantaardig_alternatief(plantaardig_ingrediënt)
+
+            nieuw_recept.voeg_ingredient_toe(ingrediënt)
+
+            nieuw_ingrediënt = input("Wil je nog een ingrediënt toevoegen? ").lower()
+            if nieuw_ingrediënt == "nee":
+                break
+        except ValueError:
+                print("Foutieve invoer")
+
+    while True:
+        stap_tekst = input("Beschrijf de bereidingsstap: ")
+        nieuwe_stap = Stap(stap_tekst)
+
+        tip_vraag = input("Wilt u een tip toevoegen aan deze stap? (ja/nee): ").lower()
+        if tip_vraag == "ja":
+            tip_inhoud = input("Voer de tip in: ")
+            nieuwe_stap.set(tip_inhoud) 
+
+        nieuw_recept.voeg_stap_toe(nieuwe_stap)
+
+        nog_stap = input("Nog een stap toevoegen? (ja/nee): ").lower()
+        if nog_stap == "nee":
+            break
+
+    recepten.append(nieuw_recept)
+    print("Recept is toegevoegd aan het overzicht!")
+    print(nieuw_recept)
+
 if __name__ == "__main__":
-    main()
+    tonen_keuzemenu()
