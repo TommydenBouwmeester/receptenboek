@@ -33,6 +33,16 @@ class Recept:
     def get_aantal_personenen(self):
         return self.__aantal_personen
     
+    def get_naam(self):
+        return self.__naam
+    
+    def get_omschrijving(self):
+        return self.__omschrijving
+    
+    def get_aantal_personen(self):
+        return self.__aantal_personen
+
+
     def get_plantaardig_recept(self, plantaardig: bool):
         totaal_kcal = 0
         titel = "RECEPT: " + self.__naam
