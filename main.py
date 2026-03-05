@@ -2,6 +2,7 @@ from recept import Recept
 from ingredient import Ingredient 
 from stap import Stap
 from reportlab.pdfgen import canvas
+from reportlab.lib import colors
 
 
 def main():
@@ -198,6 +199,28 @@ def voeg_recept_toe(recepten):
     recepten.append(nieuw_recept)
     print("Recept is toegevoegd aan het overzicht!")
     print(nieuw_recept)
+
+def exporteer_naar_pdf(gekozen_recept):
+    bestandsnaam = gekozen_recept.get_naam() + ".pdf"
+    pdf = canvas.Canvas(bestandsnaam)
+    pdf.setTitle(gekozen_recept.get_naam())
+    pdf.setFont("Helvetica-Bold", 24)
+    pdf.drawCentredString(300, 770, gekozen_recept.get_naam())
+    pdf.line(30, 750, 550, 750)
+    tekst = pdf.beginText(40, 720)
+    tekst.setFont("Helvetica", 12)
+    tekst.setFillColor(colors.black)
+    regels = str(gekozen_recept).split('\n')
+    
+    for regel in regels:
+        while len(regel) > 90:
+            tekst.textLine(regel[:90])
+            regel = "  " + regel[90:]  
+        tekst.textLine(regel)
+
+    pdf.drawText(tekst)
+    pdf.save()
+    print(f"PDF {bestandsnaam} is klaar!")
 
 if __name__ == "__main__":
     tonen_keuzemenu()
